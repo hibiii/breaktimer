@@ -18,9 +18,9 @@ var state = State.idle;
 var seconds: u16 = undefined;
 
 pub fn main() !void {
-    var minutes: u8 = 0;
-    try args.processMain(&minutes);
-    seconds = minutes * SECONDS_PER_MINUTE;
+    var params = try args.processMain();
+    seconds = params.minutes * SECONDS_PER_MINUTE;
+    std.debug.print("{s} {s}\n", .{ params.ring_path.?, params.chime_path.? });
 
     try signals.register(signals.Alarm, transitions.alarm);
     try signals.register(signals.Acknowledge, transitions.acknowledge);

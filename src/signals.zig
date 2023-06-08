@@ -13,11 +13,10 @@ pub const Acknowledge = signal.SIGUSR1;
 pub const Standup = signal.SIGUSR2;
 
 /// Sent when the user sits down at the computer.
-///
-/// SIGCONT has the positive side effect of continuing program execution, this
-/// can be coupled with a self-raised SIGSTOP after a standup signal to reduce
-/// CPU usage.
-pub const Sitdown = signal.SIGCONT;
+pub const Sitdown = 50;
+
+pub const Terminate = signal.SIGTERM;
+pub const Interrupt = signal.SIGINT;
 
 pub const Error = error{
     HandlersDisallowedForSignal,

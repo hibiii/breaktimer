@@ -12,6 +12,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
     main_exe.linkLibC();
+    main_exe.linkSystemLibrary("raylib");
 
     b.installArtifact(main_exe);
 

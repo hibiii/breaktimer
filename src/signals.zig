@@ -35,3 +35,5 @@ fn nullHandler(signal_number: c_int) callconv(.C) void {
 pub inline fn sinkhole(signal_number: c_int) !void {
     try register(signal_number, nullHandler);
 }
+
+pub const raise = signal.raise;

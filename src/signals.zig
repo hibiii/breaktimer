@@ -28,3 +28,10 @@ pub fn register(signal_number: c_int, comptime handler: fn (c_int) callconv(.C) 
         return Error.HandlersDisallowedForSignal;
     }
 }
+
+fn nullHandler(signal_number: c_int) callconv(.C) void {
+    _ = signal_number;
+}
+pub inline fn sinkhole(signal_number: c_int) !void {
+    try register(signal_number, nullHandler);
+}
